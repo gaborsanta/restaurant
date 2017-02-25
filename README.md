@@ -1,11 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This  is a sample Restaurant Reservation Web Application.
+To-do: add heroku link here
 
 Things you may want to cover:
 
 * Ruby version
+2.3.0
 
 * System dependencies
 
