@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.3.0'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
-#gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.2'
 #gem 'paperclip', '~> 4.2'
 #gem 'aws-sdk', '< 2.0'
 #gem 'masonry-rails', '~> 0.2.0'

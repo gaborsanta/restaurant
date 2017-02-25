@@ -1,7 +1,11 @@
 <div class="jumbotron center">
-  <h1>Welcome to my app!</h1>
-     <p>
-       <%= link_to "Log in", "#", class: "btn btn-default btn-lg" %>
-       <%= link_to "Sign up", "#", class: "btn btn-primary btn-lg" %>
-  </p>
+     <h1>Welcome to my app!</h1>
+     <% if owner_signed_in? %>
+          # Members Area
+     <% else %>
+       <p>
+         <%= link_to "Log in", new_owner_session_path, class: "btn btn-default btn-lg" %>
+         <%= link_to "Sign up", new_owner_registration_path, class: "btn btn-primary btn-lg" %>
+       </p>
+  <% end %>
 </div>
