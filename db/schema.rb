@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225204101) do
+ActiveRecord::Schema.define(version: 20170225232226) do
+
+  create_table "eateries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "owners", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -27,6 +35,14 @@ ActiveRecord::Schema.define(version: 20170225204101) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

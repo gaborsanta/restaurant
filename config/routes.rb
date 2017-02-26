@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :eateries
   devise_for :owners
   root "pages#home"
 
