@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Owner's email</th>
       <th>Address</th>
       <th>Description</th>
       <th colspan="3"></th>
@@ -16,16 +17,21 @@
     <% @eateries.each do |eatery| %>
       <tr>
         <td><%= eatery.name %></td>
+        <td><%= eatery.owner.email if eatery.owner %></td>
         <td><%= eatery.address %></td>
         <td><%= eatery.description %></td>
         <td><%= link_to 'Show', eatery %></td>
+        <% if eatery.owner == current_owner %>
         <td><%= link_to 'Edit', edit_eatery_path(eatery) %></td>
         <td><%= link_to 'Destroy', eatery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+  <% if owner_signed_in? %>
+    <%= link_to 'New Eatery', new_eatery_path %>
+  <% end %>
 
-<%= link_to 'New Eatery', new_eatery_path %>

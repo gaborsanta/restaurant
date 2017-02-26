@@ -1,6 +1,7 @@
 class EateriesController < ApplicationController
   before_action :set_eatery, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_owner!, except: [:index, :show]
+  before_action :correct_owner, only: [:edit, :update, :destroy]
   # GET /eateries
   # GET /eateries.json
   def index
@@ -14,7 +15,7 @@ class EateriesController < ApplicationController
 
   # GET /eateries/new
   def new
-    @eatery = Eatery.new
+    @eatery = current_owner.eateries.build
   end
 
   # GET /eateries/1/edit
@@ -24,7 +25,7 @@ class EateriesController < ApplicationController
   # POST /eateries
   # POST /eateries.json
   def create
-    @eatery = Eatery.new(eatery_params)
+    @eatery = current_owner.eateries.build(eatery_params)
 
 
     if @eatery.save
@@ -57,6 +58,11 @@ class EateriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_eatery
       @eatery = Eatery.find(params[:id])
+    end
+
+    def correct_owner
+      @eatery = current_owner.eateries.find_by(id: params[:id])
+      redirect_to eateries_path, notice: "Not authorized to edit this Owner" if @eatery.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
