@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Name</th>
       <th>Owner's email</th>
       <th>Address</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @eateries.each do |eatery| %>
       <tr>
+        <td><%= image_tag eatery.image.url(:medium) %></td>
         <td><%= eatery.name %></td>
         <td><%= eatery.owner.email if eatery.owner %></td>
         <td><%= eatery.address %></td>
