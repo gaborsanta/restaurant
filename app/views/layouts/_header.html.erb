@@ -18,6 +18,7 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "About", about_path %></li>
           <% if owner_signed_in? %>
+            <li><%= link_to 'New Eatery', new_eatery_path %></li>
             <li><%= link_to "Account Settings", edit_owner_registration_path %></li>
             <li><%= link_to "Log out", destroy_owner_session_path, method: :delete %></li>
           <% else %>
