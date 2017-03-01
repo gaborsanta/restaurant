@@ -86,4 +86,14 @@ Rails.application.configure do
   #Required for Heroku
   #note to set this to your host
   config.action_mailer.default_url_options = { host: 'https://reservster-app.herokuapp.com/' }
+  # config/environments/production.rb
+  # Sets Paperclip to upload igames to Amazon S3
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['S3_BUCKET_NAME'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  }
+    }
 end
