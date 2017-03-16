@@ -1,0 +1,51 @@
+<%= form_for reservation, html: { multipart: true } do |f| %>
+
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this@eatery from being saved:</h2>
+
+        <ul>
+          <% reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :party_size %>
+        <%= f.number_field :party_size, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date %>
+        <%= f.date_select :date, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :time %>
+        <%= f.time_select :time, ampm:true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :comment %>
+        <%= f.text_field :comment, class: "form-control" %>
+      </div>
+
+      <%= f.hidden_field :eatery_id, :value => eatery_id %>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

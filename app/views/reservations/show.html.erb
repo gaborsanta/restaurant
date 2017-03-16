@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @reservation.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @reservation.date %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @reservation.time %>
+</p>
+
+<p>
+  <strong>Party Size:</strong>
+  <%= @reservation.party_size %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @reservation.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>

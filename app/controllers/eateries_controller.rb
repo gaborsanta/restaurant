@@ -1,7 +1,7 @@
 class EateriesController < ApplicationController
   before_action :set_eatery, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_owner!, except: [:index, :show]
-  before_action :correct_owner, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   # GET /eateries
   # GET /eateries.json
   def index
@@ -11,11 +11,14 @@ class EateriesController < ApplicationController
   # GET /eateries/1
   # GET /eateries/1.json
   def show
+    #debugger
+    @reservation = Reservation.new
+    debugger
   end
 
   # GET /eateries/new
   def new
-    @eatery = current_owner.eateries.build
+    @eatery = current_user.eateries.build
   end
 
   # GET /eateries/1/edit
@@ -25,8 +28,7 @@ class EateriesController < ApplicationController
   # POST /eateries
   # POST /eateries.json
   def create
-    @eatery = current_owner.eateries.build(eatery_params)
-
+    @eatery = current_user.eateries.build(eatery_params)
 
     if @eatery.save
       redirect_to @eatery, notice: 'Eatery was successfully created.'
@@ -34,7 +36,9 @@ class EateriesController < ApplicationController
       render :new
     end
 
+    #debugger
   end
+
 
   # PATCH/PUT /eateries/1
   # PATCH/PUT /eateries/1.json
@@ -46,6 +50,9 @@ class EateriesController < ApplicationController
       end
 
   end
+
+
+
 
   # DELETE /eateries/1
   # DELETE /eateries/1.json
@@ -60,9 +67,9 @@ class EateriesController < ApplicationController
       @eatery = Eatery.find(params[:id])
     end
 
-    def correct_owner
-      @eatery = current_owner.eateries.find_by(id: params[:id])
-      redirect_to eateries_path, notice: "Not authorized to edit this Owner" if @eatery.nil?
+    def correct_user
+      @eatery = current_user.eateries.find_by(id: params[:id])
+      redirect_to eateries_path, notice: "Not authorized to edit this User" if @eatery.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

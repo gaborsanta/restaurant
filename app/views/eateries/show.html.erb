@@ -16,9 +16,12 @@
 </p>
 
 
-<% if @eatery.owner == current_owner %>
-  <%= link_to 'Edit', edit_eatery_path(@eatery) %> |
+<% if @eatery.user == current_user %>
+    <%= render partial: 'reservations/form', locals: {reservation: @reservation, eatery_id: @eatery.id}  %>
+    <%= link_to 'Edit', edit_eatery_path(@eatery) %> |
 <% end %>
 
 <%= link_to 'Back', eateries_path %>
+
+
 

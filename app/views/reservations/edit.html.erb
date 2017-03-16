@@ -1,0 +1,8 @@
+<h1>Editing Reservation</h1>
+
+
+<%= render partial: 'form', locals: {reservation: @reservation, eatery_id: @reservation.eatery_id}  %>
+
+<%= link_to 'Show', @reservation %> |
+<%= link_to 'Back', reservations_path %>
+
