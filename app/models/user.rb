@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :eateries
   has_many :reservations
 
+  validates :name, presence: true
+
   #Create a method on User named 'owner?'
   #and return true when the User has the 'owner' role,
   #otherwise return false

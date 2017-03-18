@@ -7,7 +7,7 @@
       <%= link_to image_tag(eatery.image.url(:medium)), eatery_path(eatery) %>
     <div class="panel-body">
       <p><strong><%= eatery.name %></strong></p>
-      <%= eatery.user.email if eatery.user %><br/>
+      <%= eatery.user.name if eatery.user %><br/>
       <%= eatery.address %><br/>
       <%= eatery.description %><br/>
 
