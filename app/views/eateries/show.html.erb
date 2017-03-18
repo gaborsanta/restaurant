@@ -14,7 +14,7 @@
         </p>
         <p><%= @eatery.description %></p>
 
-        <% if @eatery.user == current_user %>
+        <% if current_user && @eatery.user == current_user %>
           <%= render partial: 'reservations/form', locals: {reservation: @reservation, eatery_id: @eatery.id}  %>
           <%= link_to 'Edit', edit_eatery_path(@eatery) %> |
         <% end %>

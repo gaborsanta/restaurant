@@ -11,7 +11,7 @@
       <%= eatery.address %><br/>
       <%= eatery.description %><br/>
 
-      <% if eatery.user == current_user %>
+      <% if current_user && eatery.user == current_user %>
           <div class="actions">
             <%= link_to 'Edit', edit_eatery_path(eatery) %>
             <%= link_to 'Destroy', eatery, method: :delete, data: { confirm: 'Are you sure?' } %>
