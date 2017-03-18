@@ -5,7 +5,8 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     #@reservations = Reservation.all
-    @reservations = current_user.reservations
+    @reservations = current_user.reservations #.order("created_at DESC")
+    #@eateries = Eatery.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /reservations/1

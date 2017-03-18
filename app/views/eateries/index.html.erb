@@ -1,21 +1,29 @@
+<%= render 'pages/home' unless user_signed_in? %>
+
 <div id="eateries" class="transitions-enabled">
 <% @eateries.each do |eatery| %>
   <div class="box" panel panel-default">
 
-      <%= image_tag eatery.image.url(:medium) %>
+      <%= link_to image_tag(eatery.image.url(:medium)), eatery_path(eatery) %>
     <div class="panel-body">
-      <%= eatery.name %>
-      <%= eatery.user.email if eatery.user %>
-      <%= eatery.address %>
-      <%= eatery.description %>
-      <%= link_to 'Show', eatery_path(eatery)%>
+      <p><strong><%= eatery.name %></strong></p>
+      <%= eatery.user.email if eatery.user %><br/>
+      <%= eatery.address %><br/>
+      <%= eatery.description %><br/>
+
       <% if eatery.user == current_user %>
-      <%= link_to 'Edit', edit_eatery_path(eatery) %>
-      <%= link_to 'Destroy', eatery, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <div class="actions">
+            <%= link_to 'Edit', edit_eatery_path(eatery) %>
+            <%= link_to 'Destroy', eatery, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
       <% end %>
     </div>
   </div>
  <% end %>
+</div>
+
+<div class="center">
+   <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 </div>
 
 

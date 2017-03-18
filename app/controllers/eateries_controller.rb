@@ -5,7 +5,7 @@ class EateriesController < ApplicationController
   # GET /eateries
   # GET /eateries.json
   def index
-    @eateries = Eatery.all
+    @eateries = Eatery.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /eateries/1
