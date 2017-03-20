@@ -2,10 +2,14 @@ class EateriesController < ApplicationController
   before_action :set_eatery, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  helper_method :owner?
+  helper_method :patron?
   # GET /eateries
   # GET /eateries.json
   def index
     @eateries = Eatery.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    #@user = User.owner?
+
   end
 
   # GET /eateries/1
@@ -13,12 +17,13 @@ class EateriesController < ApplicationController
   def show
     #debugger
     @reservation = Reservation.new
-    debugger
+    #debugger
   end
 
   # GET /eateries/new
   def new
     @eatery = current_user.eateries.build
+
   end
 
   # GET /eateries/1/edit

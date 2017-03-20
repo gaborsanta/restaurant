@@ -10,8 +10,9 @@
       <%= eatery.user.name if eatery.user %><br/>
       <%= eatery.address %><br/>
       <%= eatery.description %><br/>
-
-      <% if current_user && eatery.user == current_user %>
+      <p><strong>User Role:</strong>
+        <%= eatery.user.role%><br/>
+      <% if eatery.user.role == "owner" && current_user && eatery.user == current_user %>
           <div class="actions">
             <%= link_to 'Edit', edit_eatery_path(eatery) %>
             <%= link_to 'Destroy', eatery, method: :delete, data: { confirm: 'Are you sure?' } %>

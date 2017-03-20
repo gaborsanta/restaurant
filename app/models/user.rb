@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  #enum role: {admin: 0 , owner: 1, patron: 2}
   has_many :eateries, dependent: :destroy
   has_many :reservations, dependent: :destroy
 
@@ -12,6 +13,30 @@ class User < ApplicationRecord
   #and return true when the User has the 'owner' role,
   #otherwise return false
 
+  def owner?
 
+    #self.role == 1
+    if current_user.try(:role) === "owner"
+      #debugger
+      true
+    else
+      false
+    end
+
+  end
+
+
+
+  #Create a method on User named 'patron?' and return true when the User has the 'patron' role,
+  #otherwise return false
+
+  def patron?
+    if current_user.try(:role) === "patron"
+      #debugger
+      true
+    else
+      false
+    end
+  end
 
 end
