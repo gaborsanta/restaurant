@@ -16,7 +16,7 @@ class User < ApplicationRecord
   def owner?
 
     #self.role == 1
-    if current_user.try(:role) === "owner"
+    if self.try(:role) === "owner"
       #debugger
       true
     else
@@ -31,7 +31,7 @@ class User < ApplicationRecord
   #otherwise return false
 
   def patron?
-    if current_user.try(:role) === "patron"
+    if self.try(:role) === "patron"
       #debugger
       true
     else
