@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :reservations
   resources :eateries
   devise_for :users
+  resources :users
   root "eateries#index"
 
   get "about" => "pages#about"
