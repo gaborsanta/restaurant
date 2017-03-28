@@ -1,10 +1,20 @@
 <div id="user" class="transitions-enabled">
+
 <% @users.each do |user| %>
   <div class="box" panel panel-default">
 
     <div class="panel-body">
       <%= user.name %><br/>
       <%= user.email %><br/>
+      <%= user.role %>
+      <% if user.role == "patron" %>
+        <br>
+        <%= link_to("Make Owner", test_users_path(user, {:id => user.id, :role => "owner"}), method: :post, class: "btn btn-success", "data-no-turbolink" => true) %>
+      <% end %>
+      <% if user.role == "owner" %>
+        <br>
+        <%= link_to("Make Patron", test_users_path(user, {:id => user.id}), method: :post, class: "btn btn-success", "data-no-turbolink" => true) %>
+      <% end %>
     </div>
   </div>
  <% end %>
