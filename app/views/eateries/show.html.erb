@@ -13,6 +13,8 @@
           <%= @eatery.address %>
         </p>
         <p><%= @eatery.description %></p>
+        <p><%= @eatery.categories.collect{|o| o.name}.join(",") %></p>
+
 
         <% if current_user && @eatery.user == current_user%>
           <%= render partial: 'reservations/form', locals: {reservation: @reservation, eatery_id: @eatery.id}  %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :categories
   resources :reservations
   resources :eateries
   devise_for :users

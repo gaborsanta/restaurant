@@ -10,6 +10,8 @@
       <%= eatery.user.name if eatery.user %><br/>
       <%= eatery.address %><br/>
       <%= eatery.description %><br/>
+      <%= eatery.categories.collect{|o| o.name}.join(",") %>
+      <%= eatery.categories.size %>
       <p><strong>User Role:</strong>
         <%= eatery.user.role%><br/>
       <% if eatery.user.role == "owner" && current_user && eatery.user == current_user %>
