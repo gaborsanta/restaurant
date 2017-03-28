@@ -2,6 +2,7 @@ class EateriesController < ApplicationController
   before_action :set_eatery, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :allowed_to_create_eatery, only: [:edit, :new, :create]
   helper_method :owner?
   helper_method :patron?
   # GET /eateries
@@ -77,6 +78,9 @@ class EateriesController < ApplicationController
       redirect_to eateries_path, notice: "Not authorized to edit this User" if @eatery.nil?
     end
 
+    def allowed_to_create_eatery
+      redirect_to eateries_path, notice: "Not authorized to create or edit an Eatery" if current_user.patron?
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def eatery_params
       params.require(:eatery).permit(:name, :image, :address, :description, {category_ids:[]})

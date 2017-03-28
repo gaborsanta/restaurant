@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
 	# GET /users
   	# GET /users.json
-	def index 
+	def index
 		@users = User.all
 	end
 
@@ -36,6 +36,22 @@ class UsersController < ApplicationController
 
   end
 
+  def test
+    debugger
+    logger.debug "Test Log: #{:id}"
+    @user = User.find(params[:id])
+    logger.debug "Test Log: #{@user.role}"
+    if @user.role == "patron"
+      @user.role = "owner"
+    else
+      @user.role = "patron"
+    end
+    logger.debug "Test Log: #{@user.role}"
+    logger.debug "Test Log: #{@user.name}"
+    @user.save
+    redirect_to :back, flash: {notice: "User is now an #{@user.role}"}
+  end
+
 
   # PATCH/PUT /user/1
   # PATCH/PUT /user/1.json
@@ -45,19 +61,15 @@ class UsersController < ApplicationController
       else
         render :edit
       end
-
   end
-
-
 
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to index, notice: 'User was successfully destroyed.'
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -4,8 +4,17 @@ Rails.application.routes.draw do
   resources :reservations
   resources :eateries
   devise_for :users
-  resources :users
+  resources :users do
+    collection do
+      post 'test'
+    end
+  end
+
+  #put "test" => "users#test"
+
   root "eateries#index"
+
+
 
   get "about" => "pages#about"
 
